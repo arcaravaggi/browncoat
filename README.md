@@ -3,7 +3,7 @@ A personal repo containing functions, notes, that sort of thing. A miscellany, i
 
 ### Long(ish) scripts
 
-[theme_ac1.R](https://github.com/arcaravaggi/browncoat/blob/master/multiplot.R)  
+[theme_ac1.R](https://github.com/arcaravaggi/browncoat/blob/master/theme_ac1.R)  
 Custom ggplot theme for publication-quality figures.  
 
 [multicsv.R](https://github.com/arcaravaggi/browncoat/blob/master/multicsv.R)  
