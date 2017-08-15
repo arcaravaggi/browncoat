@@ -7,7 +7,7 @@ A personal repo containing functions, notes, that sort of thing. A miscellany, i
 Custom ggplot theme for publication-quality figures.  
 
 [multicsv.R](https://github.com/arcaravaggi/browncoat/blob/master/multicsv.R)  
-Import files from multiple sub(+)diretories, with basic cleaning.  
+Import files from multiple sub(+)directories, with basic cleaning.  
 
 [rem_resample.R](https://github.com/arcaravaggi/browncoat/blob/master/rem_resample.R)  
 Resample camera trap zone of detection metrics (r & theta) and calculate 95% confidence intervals.  
