@@ -25,6 +25,9 @@ Multiple plot function, from [R Cookbook](http://www.cookbook-r.com/Graphs/Multi
 
 For all Gists, [click here](https://gist.github.com/arcaravaggi)  
 
+[multicsv_lst.R](https://gist.github.com/arcaravaggi/1abb4e19a20263b85cd7e488acd94ceb)  
+Read multiple csv files from one directory.  
+
 [df_col_split.R](https://gist.github.com/arcaravaggi/05a1b15fa67a74ba9f0b0614f9a8281c)  
 Split column into multiple based on spaces, extra characters, etc.  
 
