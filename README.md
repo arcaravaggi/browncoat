@@ -28,6 +28,9 @@ For all Gists, [click here](https://gist.github.com/arcaravaggi)
 [arrange_cols.R](https://gist.github.com/arcaravaggi/38d9739380a08464e990427ba5222356)  
 (Re-)arrange columns of a dataframe.
 
+[cor.test.R](https://gist.github.com/arcaravaggi/004979408be4116505a49bd1d4c6e298)
+Function for pairwise correlations across a data frame
+
 [df_col_split.R](https://gist.github.com/arcaravaggi/05a1b15fa67a74ba9f0b0614f9a8281c)  
 Split column into multiple based on spaces, extra characters, etc.  
 
