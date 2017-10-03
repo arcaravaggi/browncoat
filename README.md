@@ -28,11 +28,17 @@ For all Gists, [click here](https://gist.github.com/arcaravaggi)
 [arrange_cols.R](https://gist.github.com/arcaravaggi/38d9739380a08464e990427ba5222356)  
 (Re-)arrange columns of a dataframe.
 
+[coefplot.R](https://gist.github.com/arcaravaggi/298d257e53473b1e3beaaba449ec50ec)  
+Plot regression coefficients, from [r-statistics](https://www.r-statistics.com/wp-content/uploads/2010/07/coefplot.r.txt"), by [Achim Zeileis](http://statmath.wu.ac.at/~zeileis/).
+
 [cor.test.R](https://gist.github.com/arcaravaggi/004979408be4116505a49bd1d4c6e298)
 Function for pairwise correlations across a data frame
 
 [df_col_split.R](https://gist.github.com/arcaravaggi/05a1b15fa67a74ba9f0b0614f9a8281c)  
 Split column into multiple based on spaces, extra characters, etc.  
+
+[spLine.ld.R](https://gist.github.com/arcaravaggi/2b24abfb39b8ec4dd80b52f3e69280e4)   
+Intersects SpatialLine and SpatialPolygon objects and produces total line length and density per polygon ID.   
 
 [migrate_packages.R](https://gist.github.com/arcaravaggi/20acc42e3e245cc268a95269de024b2d)  
 Migrate R packages to new installation.  
