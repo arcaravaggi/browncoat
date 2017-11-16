@@ -8,35 +8,9 @@ Libraries
 ``` r
 library(sp)
 library(spatstat)
-```
-
-    ## Warning: package 'spatstat' was built under R version 3.4.2
-
-    ## Loading required package: nlme
-
-    ## Loading required package: rpart
-
-    ## 
-    ## spatstat 1.52-1       (nickname: 'Apophenia') 
-    ## For an introduction to spatstat, type 'beginner'
-
-    ## 
-    ## Note: spatstat version 1.52-1 is out of date by more than 12 weeks; a newer version should be available.
-
-``` r
 library(raster)
 ```
 
-    ## 
-    ## Attaching package: 'raster'
-
-    ## The following objects are masked from 'package:spatstat':
-    ## 
-    ##     area, rotate, shift
-
-    ## The following object is masked from 'package:nlme':
-    ## 
-    ##     getData
 
 Create SpatialPolygon object of ~ 200 km^2. Generate 50 random points within the polygon and assign count values randomly drawn from a given distribution. Create a dataframe of point coordinates and count. Duplicate rows according to count values, preserving coordinate columns.
 
