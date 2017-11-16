@@ -1,7 +1,12 @@
 # browncoat
 A personal repo containing functions, notes, that sort of thing. A miscellany, if you will.  
 
-### Long(ish) scripts
+### Demonstrations   
+
+[Kernel Density Estimation (KDE)](https://github.com/arcaravaggi/browncoat/blob/master/KDE.md)  
+Demonstrating how to construct a KDE map, apply thresholds and convert to a raster object. 
+
+### Uploaded scripts
 
 [theme_ac1.R](https://github.com/arcaravaggi/browncoat/blob/master/theme_ac1.R)  
 Custom ggplot theme for publication-quality figures.  
@@ -36,6 +41,9 @@ Function for pairwise correlations across a data frame
 
 [df_col_split.R](https://gist.github.com/arcaravaggi/05a1b15fa67a74ba9f0b0614f9a8281c)  
 Split column into multiple based on spaces, extra characters, etc.  
+
+[simpleCap.R](https://gist.github.com/arcaravaggi/e8c2a720dea43ab5d3f24e0fe5da0476)   
+Capitalise the first letter of every word in a string, by [stackoverflow user Andrie](https://stackoverflow.com/questions/6364783/capitalize-the-first-letter-of-both-words-in-a-two-word-string).  
 
 [spLine.ld.R](https://gist.github.com/arcaravaggi/2b24abfb39b8ec4dd80b52f3e69280e4)   
 Intersects SpatialLine and SpatialPolygon objects and produces total line length and density per polygon ID.   
