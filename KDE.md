@@ -11,7 +11,6 @@ library(spatstat)
 library(raster)
 ```
 
-
 Create SpatialPolygon object of ~ 200 km^2. Generate 50 random points within the polygon and assign count values randomly drawn from a given distribution. Create a dataframe of point coordinates and count. Duplicate rows according to count values, preserving coordinate columns.
 
 ``` r
@@ -71,7 +70,7 @@ sp.dens_r2 <- rasterRescale(sp.dens_r)
 Apply threshold by formatting values below a given value to be 0.
 
 ``` r
-sp.dens_r2[sp.dens_r2<=0.4]=0
+sp.dens_r2[sp.dens_r2<=0.25]=0
 plot(sp.dens_r2)
 ```
 
@@ -84,7 +83,7 @@ rasterRescale.Set<-function(r, rmin, rmax){
   ((r-rmin)/(rmax-rmin))
 }
 
-sp.dens_r3 <- rasterRescale.Set(sp.dens_r2, 0.41, 1)
+sp.dens_r3 <- rasterRescale.Set(sp.dens_r2, 0.26, 1)
 sp.dens_r3[sp.dens_r3<=0]=0
 plot(sp.dens_r3)
 ```
