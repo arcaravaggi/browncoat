@@ -3,11 +3,7 @@ Read multiple csv files and subset
 Anthony Caravaggi
 9 January 2018
 
-```{r echo = OFF}
-setwd("files/")
-```
-
-The script, below, assumes that the csv files are located in the working directory. If this is not the case, edit the code accordingly (e.g. dir(path = '....', pattern...)).
+To use this script as-is, download the scripts from the multicsv_2_files directory, above. The script assumes that the csv files are located in the working directory. If this is not the case, edit the code accordingly (e.g. dir(path = '....', pattern...)).
 
 First, read the csv names.
 

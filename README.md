@@ -6,6 +6,9 @@ A personal repo containing functions, notes, that sort of thing. A miscellany, i
 [Kernel Density Estimation (KDE)](https://github.com/arcaravaggi/browncoat/blob/master/KDE.md)  
 Demonstrating how to construct a KDE map, apply thresholds and convert to a raster object. 
 
+[Multi-csv import and organisation](https://github.com/arcaravaggi/browncoat/blob/master/multicsv_2.md)  
+Import multiple csv files from a directory and extract relevant information. This simple demo was written to answer a question frequently asked by students.  
+
 ### Uploaded scripts
 
 [theme_ac1.R](https://github.com/arcaravaggi/browncoat/blob/master/theme_ac1.R)  
