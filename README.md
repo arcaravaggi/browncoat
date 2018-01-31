@@ -51,10 +51,13 @@ Capitalise the first letter of every word in a string, by [stackoverflow user An
 [spLine.ld.R](https://gist.github.com/arcaravaggi/2b24abfb39b8ec4dd80b52f3e69280e4)   
 Intersects SpatialLine and SpatialPolygon objects and produces total line length and density per polygon ID.   
 
+[maxDup_NAs.R]()  
+Split data by focal column and remove duplicates from a span to columns, keeping the one with the most data.  Adapted from [akrun](https://stackoverflow.com/questions/33047084/r-remove-duplicated-value-conditionally-between-row-keeping-the-one-with-less-n).  
+
 [migrate_packages.R](https://gist.github.com/arcaravaggi/20acc42e3e245cc268a95269de024b2d)  
 Migrate R packages to new installation.  
 
-[modOverlap.R](https://gist.github.com/arcaravaggi/0b829257f41c3554cbbff8b1017ba6b1)
+[modOverlap.R](https://gist.github.com/arcaravaggi/0b829257f41c3554cbbff8b1017ba6b1)  
 Metrics for quantifying the similarity among ecological niche models, from [modtools](https://modtools.wordpress.com/2015/10/30/modoverlap/)
 
 [multicsv_lst.R](https://gist.github.com/arcaravaggi/1abb4e19a20263b85cd7e488acd94ceb)  
