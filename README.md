@@ -45,12 +45,6 @@ Function for pairwise correlations across a data frame
 [df_col_split.R](https://gist.github.com/arcaravaggi/05a1b15fa67a74ba9f0b0614f9a8281c)  
 Split column into multiple based on spaces, extra characters, etc.  
 
-[simpleCap.R](https://gist.github.com/arcaravaggi/e8c2a720dea43ab5d3f24e0fe5da0476)   
-Capitalise the first letter of every word in a string, by [stackoverflow user Andrie](https://stackoverflow.com/questions/6364783/capitalize-the-first-letter-of-both-words-in-a-two-word-string).  
-
-[spLine.ld.R](https://gist.github.com/arcaravaggi/2b24abfb39b8ec4dd80b52f3e69280e4)   
-Intersects SpatialLine and SpatialPolygon objects and produces total line length and density per polygon ID.   
-
 [maxDup_NAs.R]()  
 Split data by focal column and remove duplicates from a span to columns, keeping the one with the most data.  Adapted from [akrun](https://stackoverflow.com/questions/33047084/r-remove-duplicated-value-conditionally-between-row-keeping-the-one-with-less-n).  
 
@@ -65,6 +59,12 @@ Read multiple csv files from one directory.
 
 [multidf_to_csv.R](https://gist.github.com/arcaravaggi/eb7c1ab87a2dfd75aebfdf19757aeb63)  
 Export all active dataframes to named csv files.  
+
+[simpleCap.R](https://gist.github.com/arcaravaggi/e8c2a720dea43ab5d3f24e0fe5da0476)   
+Capitalise the first letter of every word in a string, by [stackoverflow user Andrie](https://stackoverflow.com/questions/6364783/capitalize-the-first-letter-of-both-words-in-a-two-word-string).  
+
+[spLine.ld.R](https://gist.github.com/arcaravaggi/2b24abfb39b8ec4dd80b52f3e69280e4)   
+Intersects SpatialLine and SpatialPolygon objects and produces total line length and density per polygon ID.   
 
 [tweetstorm.R](https://gist.github.com/arcaravaggi/bd4b99a5f006c999e9290fbd73637ec8)  
 Create a series of related tweets from one text string, from [emotiononthebrain](https://sites.tufts.edu/emotiononthebrain/2017/08/12/time-for-a-tweetstorm/).   
