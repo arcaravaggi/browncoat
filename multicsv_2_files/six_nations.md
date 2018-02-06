@@ -1,0 +1,54 @@
+Scrape Six Nations match data
+================
+03 February 2018
+
+Load required libraries
+```{r}
+library(XML)
+library(RCurl)
+library(rlist)
+library(stringr)
+}
+```
+
+Import website. Here I'm extracting data from Pick and Go: http://www.lassen.co.nz/pickandgo.php
+```{r}
+url.00 <- getURL("http://www.lassen.co.nz/pickandgo.php?fyear=%22,2000:2017,%22&tyear=%22,2000:2017,%22&hema=NH&tourn=6N#hrh",.opts = list(ssl.verifypeer = FALSE) )
+```
+
+Read all tables from the site and preserve the largest (which.max)
+```{r}
+tables <- readHTMLTable(url.00)
+tables <- list.clean(tables, fun = is.null, recursive = FALSE)
+n.rows <- unlist(lapply(tables, function(t) dim(t)[1]))
+sn.00 <- tables[[which.max(n.rows)]]
+```
+
+Check the head and tail for unwated data and remove if present
+```{r}
+head(sn.00)
+tail(sn.00)
+sn.00 <- sn.00[-c(271:273),]
+```
+
+Split columns which contain combined data (e.g. teams: Wal v Fra) by character
+```{r}
+m <- str_split_fixed(sn.00$Match, " v ", 2)
+s <- str_split_fixed(sn.00$Score, "-", 2)
+t <- str_split_fixed(sn.00$Tries, ":", 2)
+p <- str_split_fixed(sn.00$Pnts, "-", 2)
+```
+
+Extract the year the competition took place
+```{r}
+y <- str_sub(sn.00$Date, start= -4)
+```
+
+Recombine all into new dataframe and rename columns
+```{r}
+SixNations <- data.frame(y, sn.00$Rnd, m[,1], m[,2], s[,1], s[,2], t[,1],  t[,2], p[,1], p[,2], sn.00$Venue)
+names(SixNations) <- c("year", "round", "home", "away", "score_h", "score_a", "tries_h", "tries_a",
+                       "points_h", "points_a", "venue")
+```
+
+The final dataframe can be found at: 
