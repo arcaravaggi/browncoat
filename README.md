@@ -4,7 +4,7 @@ A personal repo containing functions, notes, that sort of thing. A miscellany, i
 ### Demonstrations   
 
 [Kernel Density Estimation (KDE)](https://github.com/arcaravaggi/browncoat/blob/master/KDE.md)  
-Demonstrating how to construct a KDE map, apply thresholds and convert to a raster object. 
+Demonstrating how to construct a KDE map, apply thresholds and convert to a raster object.
 
 [Multi-csv import and organisation](https://github.com/arcaravaggi/browncoat/blob/master/multicsv_2.md)  
 Import multiple csv files from a directory and extract relevant information. This simple demo was written to answer a question frequently asked by students.  
@@ -48,7 +48,7 @@ Function for pairwise correlations across a data frame
 [df_col_split.R](https://gist.github.com/arcaravaggi/05a1b15fa67a74ba9f0b0614f9a8281c)  
 Split column into multiple based on spaces, extra characters, etc.  
 
-[maxDup_NAs.R]()  
+[maxDup_NAs.R](https://gist.github.com/arcaravaggi/2acdf426c13af3aea7c5f25951585fbf)  
 Split data by focal column and remove duplicates from a span to columns, keeping the one with the most data.  Adapted from [akrun](https://stackoverflow.com/questions/33047084/r-remove-duplicated-value-conditionally-between-row-keeping-the-one-with-less-n).  
 
 [migrate_packages.R](https://gist.github.com/arcaravaggi/20acc42e3e245cc268a95269de024b2d)  
@@ -62,6 +62,12 @@ Read multiple csv files from one directory.
 
 [multidf_to_csv.R](https://gist.github.com/arcaravaggi/eb7c1ab87a2dfd75aebfdf19757aeb63)  
 Export all active dataframes to named csv files.  
+
+[power_analysis.R](https://gist.github.com/arcaravaggi/81e318c807a1cb259bc5cb6bda227fd4)   
+Simple power aalysis in R.   
+
+[presabsRas.R](https://gist.github.com/arcaravaggi/bd59fa55dfcaf855c1f43fdab5655e28)  
+Create raster of species presence/absence. Created by [Amy Whitehead](https://amywhiteheadresearch.wordpress.com/2016/01/25/extracting-raster-data-using-a-shapefile/#more-918).
 
 [simpleCap.R](https://gist.github.com/arcaravaggi/e8c2a720dea43ab5d3f24e0fe5da0476)   
 Capitalise the first letter of every word in a string, by [stackoverflow user Andrie](https://stackoverflow.com/questions/6364783/capitalize-the-first-letter-of-both-words-in-a-two-word-string).  
