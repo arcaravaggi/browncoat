@@ -14,9 +14,9 @@ Scrape tables from a website, split columns and extract relevant data. This exam
 
 ### Uploaded scripts
 
-[theme_ac1.R](https://github.com/arcaravaggi/browncoat/blob/master/theme_ac1.R)  
-Custom ggplot theme for publication-quality figures.  
-
+[bufferFrags.R](https://github.com/arcaravaggi/browncoat/blob/master/bufferFrags.R)  
+Calculate habitat fragmentation indices/stats for particular coordinates. From and by [Greg Guerin](http://vegetationsciencetools.blogspot.ie/2015/07/function-for-calculating-habitat.html).  
+  
 [multicsv.R](https://github.com/arcaravaggi/browncoat/blob/master/multicsv.R)  
 Import files from multiple sub(+)directories, with basic cleaning.  
 
@@ -30,7 +30,10 @@ Simplified loading and installing of packages, from [rbloggers](https://www.r-bl
 Resample camera trap zone of detection metrics (r & theta) and calculate 95% confidence intervals.  
 
 [suntimes.R](https://github.com/arcaravaggi/browncoat/blob/master/suntimes.R)  
-Calculate sunrise and sunset for a given location at a given time of year.  
+Calculate sunrise and sunset for a given location at a given time of year.   
+
+[theme_ac1.R](https://github.com/arcaravaggi/browncoat/blob/master/theme_ac1.R)  
+Custom ggplot theme for publication-quality figures.    
 
 ### Gists  
 
