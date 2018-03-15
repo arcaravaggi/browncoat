@@ -16,7 +16,7 @@ Scrape tables from a website, split columns and extract relevant data. This exam
 
 [bufferFrags.R](https://github.com/arcaravaggi/browncoat/blob/master/bufferFrags.R)  
 Calculate habitat fragmentation indices/stats for particular coordinates. From and by [Greg Guerin](http://vegetationsciencetools.blogspot.ie/2015/07/function-for-calculating-habitat.html).  
-  
+
 [multicsv.R](https://github.com/arcaravaggi/browncoat/blob/master/multicsv.R)  
 Import files from multiple sub(+)directories, with basic cleaning.  
 
@@ -50,6 +50,9 @@ Function for pairwise correlations across a data frame
 
 [df_col_split.R](https://gist.github.com/arcaravaggi/05a1b15fa67a74ba9f0b0614f9a8281c)  
 Split column into multiple based on spaces, extra characters, etc.  
+
+[euDist.R](https://gist.github.com/arcaravaggi/b990ff3b9545a453761af5f2195b151c)    
+Calculate Euclidean distance between groups of ecological point data.  
 
 [maxDup_NAs.R](https://gist.github.com/arcaravaggi/2acdf426c13af3aea7c5f25951585fbf)  
 Split data by focal column and remove duplicates from a span to columns, keeping the one with the most data.  Adapted from [akrun](https://stackoverflow.com/questions/33047084/r-remove-duplicated-value-conditionally-between-row-keeping-the-one-with-less-n).  
