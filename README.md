@@ -17,6 +17,12 @@ Scrape tables from a website, split columns and extract relevant data. This exam
 [bufferFrags.R](https://github.com/arcaravaggi/browncoat/blob/master/bufferFrags.R)  
 Calculate habitat fragmentation indices/stats for particular coordinates. From and by [Greg Guerin](http://vegetationsciencetools.blogspot.ie/2015/07/function-for-calculating-habitat.html).  
 
+[cInt.R](https://github.com/arcaravaggi/browncoat/blob/master/cInt.R)     
+Calculation of Confidence Intervals with varying critical values, given mean and standard deviation.     
+
+[minmax.R](https://github.com/arcaravaggi/browncoat/blob/master/minmax.R)    
+Calculate minimum and maximum variance based on n bootstrapping iterations, with thresholding.     
+
 [multicsv.R](https://github.com/arcaravaggi/browncoat/blob/master/multicsv.R)  
 Import files from multiple sub(+)directories, with basic cleaning.  
 
@@ -80,6 +86,9 @@ Capitalise the first letter of every word in a string, by [stackoverflow user An
 
 [spLine.ld.R](https://gist.github.com/arcaravaggi/2b24abfb39b8ec4dd80b52f3e69280e4)   
 Intersects SpatialLine and SpatialPolygon objects and produces total line length and density per polygon ID.   
+
+[tnorm.R](https://gist.github.com/arcaravaggi/bafe1982851078f9bc5b9f64d4568585)    
+Function for the truncation of a generated normal distribution (adapted *rnorm*).     
 
 [tweetstorm.R](https://gist.github.com/arcaravaggi/bd4b99a5f006c999e9290fbd73637ec8)  
 Create a series of related tweets from one text string, from [emotiononthebrain](https://sites.tufts.edu/emotiononthebrain/2017/08/12/time-for-a-tweetstorm/).   
