@@ -58,7 +58,10 @@ Function for pairwise correlations across a data frame
 Split column into multiple based on spaces, extra characters, etc.  
 
 [euDist.R](https://gist.github.com/arcaravaggi/b990ff3b9545a453761af5f2195b151c)    
-Calculate Euclidean distance between groups of ecological point data.  
+Calculate Euclidean distance between groups of ecological point data.
+
+[extractCoords.R](https://gist.github.com/arcaravaggi/cc7a0995279d2a05780b733bed74554c)   
+Extract coordinates from SpatialPolygon object.    
 
 [maxDup_NAs.R](https://gist.github.com/arcaravaggi/2acdf426c13af3aea7c5f25951585fbf)  
 Split data by focal column and remove duplicates from a span to columns, keeping the one with the most data.  Adapted from [akrun](https://stackoverflow.com/questions/33047084/r-remove-duplicated-value-conditionally-between-row-keeping-the-one-with-less-n).  
