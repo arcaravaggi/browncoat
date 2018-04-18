@@ -11,6 +11,7 @@ Anthony Caravaggi 18 April 2018
 Libraries
 
 ``` r
+library(ggmap)
 library(spatstat)
 library(rgdal)
 library(rgeos)
@@ -31,7 +32,7 @@ p1 <- Polygon(xy)
 poly <- SpatialPolygons(list(Polygons(list(p1), ID = "a")), proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
 ```
 
-![](Rpoints_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-1.png)
+![](Rpoints_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-1.png)
 
 Generate random points with a minimum distance between each point. The rSSI function uses an inhibition distance based on a Simple Sequential Inhibition point process. I used it here for simplicity; other limited point-generation methods could be used instead.
 
@@ -41,7 +42,7 @@ samp1 <- cbind(samp1$x, samp1$y) # Extract coordinates
 samp1 <- SpatialPoints(samp1, crs(poly)) # Transform to SpatialPoints shapefile
 ```
 
-![](Rpoints_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-1.png)
+![](Rpoints_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-1.png)
 
 Check that the minumim threshold has not been violated.
 
@@ -49,14 +50,42 @@ Check that the minumim threshold has not been violated.
 spDists(samp1)*1000
 ```
 
-Extract point coordinates and join o SpatialPoints object to create SpatialPointsDataFrame
+    ##           [,1]     [,2]     [,3]     [,4]     [,5]     [,6]      [,7]
+    ##  [1,]    0.000 4908.893 4589.448 4746.113 3291.052 2157.120 4196.2545
+    ##  [2,] 4908.893    0.000 1032.279 1037.670 2474.616 4430.114 3401.5118
+    ##  [3,] 4589.448 1032.279    0.000 1951.644 2890.511 4587.302 4062.2590
+    ##  [4,] 4746.113 1037.670 1951.644    0.000 1773.963 3828.135 2433.2525
+    ##  [5,] 3291.052 2474.616 2890.511 1773.963    0.000 2055.654 1376.9240
+    ##  [6,] 2157.120 4430.114 4587.302 3828.135 2055.654    0.000 2327.3456
+    ##  [7,] 4196.255 3401.512 4062.259 2433.253 1376.924 2327.346    0.0000
+    ##  [8,] 4497.553 5296.673 5856.525 4358.709 2977.634 2350.010 1932.9633
+    ##  [9,] 3696.527 2303.152 1381.607 2971.641 3166.756 4314.069 4521.2486
+    ## [10,] 5009.460 4146.131 4905.168 3123.179 2335.731 2979.806  961.6563
+    ##           [,8]     [,9]     [,10]
+    ##  [1,] 4497.553 3696.527 5009.4600
+    ##  [2,] 5296.673 2303.152 4146.1307
+    ##  [3,] 5856.525 1381.607 4905.1684
+    ##  [4,] 4358.709 2971.641 3123.1789
+    ##  [5,] 2977.634 3166.756 2335.7309
+    ##  [6,] 2350.010 4314.069 2979.8059
+    ##  [7,] 1932.963 4521.249  961.6563
+    ##  [8,]    0.000 6063.341 1646.0830
+    ##  [9,] 6063.341    0.000 5457.9449
+    ## [10,] 1646.083 5457.945    0.0000
+
+Extract point coordinates and join to SpatialPoints object to create SpatialPointsDataFrame
 
 ``` r
 df <- data.frame(x = samp1@coords[,1], y = samp1@coords[,2]) 
 samp1 <- SpatialPointsDataFrame(samp1, df)
 head(samp1@data)
-plot(samp1)
 ```
+
+We might as well go ahead and map these to a Google Map image.
+
+    ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=51.689541,-3.56587&zoom=12&size=640x640&scale=2&maptype=satellite&sensor=false
+
+![](Rpoints_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
 
 These steps have been condensed into one function, Rpoints, below. It includes an additional step - the extraction of the lowest non-zero vaue from the distance matrix, which is then added to the dataframe.
 

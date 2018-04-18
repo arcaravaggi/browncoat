@@ -13,6 +13,7 @@ Anthony Caravaggi
 Libraries
 
 ```{r, message = FALSE}
+library(ggmap)
 library(spatstat)
 library(rgdal)
 library(rgeos)
@@ -55,14 +56,28 @@ Check that the minumim threshold has not been violated.
 spDists(samp1)*1000
 ```
 
-Extract point coordinates and join o SpatialPoints object to create SpatialPointsDataFrame
+```{r echo = FALSE}
+spDists(samp1)*1000
+```
+
+Extract point coordinates and join to SpatialPoints object to create SpatialPointsDataFrame
 
 ```r
 df <- data.frame(x = samp1@coords[,1], y = samp1@coords[,2]) 
 samp1 <- SpatialPointsDataFrame(samp1, df)
 head(samp1@data)
-plot(samp1)
 ```
+We might as well go ahead and map these to a Google Map image.
+
+```{r echo = FALSE}
+bbx <- c(left=-3.664351,bottom=51.631480,right=-3.467390,top=51.747602)
+tre <- get_googlemap(center = c(lon=mean(bbx[c(1,3)]), lat=mean(bbx[c(2,4)])),
+                        zoom =12, maptype = "satellite")
+sDat <- data.frame(samp1@coords)
+ggmap(tre) + geom_polygon(aes(x=x, y=y), data=poly, fill="red", alpha=.5) + 
+  geom_point(aes(x = sDat[,1], y = sDat[,2]), data = sDat, col="orange")
+```
+
 
 These steps have been condensed into one function, Rpoints, below. It includes an additional step - the extraction of the lowest non-zero vaue from the distance matrix, which is then added to the dataframe.
 
