@@ -5,11 +5,6 @@ date: "`r format(Sys.Date())`"
 output: github_document
 ---
 
-Generate Random Sampling Points by Minimum Distance
-================
-Anthony Caravaggi
-18 April 2018
-
 Libraries
 
 ```{r, message = FALSE}
@@ -113,6 +108,7 @@ Rpoints <- function(d = 0.0025, n = 10, p){
 
 ```r
 spat <- Rpoints(d = 0.001, n = 30, p = poly)
+head(spat@data)
 ```
 
 ```{r echo = FALSE}

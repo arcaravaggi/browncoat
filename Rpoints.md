@@ -3,11 +3,6 @@ Generate Random Sampling Points by Minimum Distance
 Anthony Caravaggi
 2018-04-18
 
-Generate Random Sampling Points by Minimum Distance
-===================================================
-
-Anthony Caravaggi 18 April 2018
-
 Libraries
 
 ``` r
@@ -32,7 +27,7 @@ p1 <- Polygon(xy)
 poly <- SpatialPolygons(list(Polygons(list(p1), ID = "a")), proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
 ```
 
-![](Rpoints_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-1.png)
+![](Rpoints_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-1.png)
 
 Generate random points with a minimum distance between each point. The rSSI function uses an inhibition distance based on a Simple Sequential Inhibition point process. I used it here for simplicity; other limited point-generation methods could be used instead.
 
@@ -42,7 +37,7 @@ samp1 <- cbind(samp1$x, samp1$y) # Extract coordinates
 samp1 <- SpatialPoints(samp1, crs(poly)) # Transform to SpatialPoints shapefile
 ```
 
-![](Rpoints_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
+![](Rpoints_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-1.png)
 
 Check that the minumim threshold has not been violated.
 
@@ -94,7 +89,7 @@ ggmap(tre) + geom_polygon(aes(x=x, y=y), data=poly, fill="red", alpha=.5) +
 
     ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=51.689541,-3.56587&zoom=12&size=640x640&scale=2&maptype=satellite&sensor=false
 
-![](Rpoints_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-1.png)
+![](Rpoints_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
 
 These steps - minus the mapping - have been condensed into one function, Rpoints, below. It includes an additional step - the extraction of the lowest non-zero vaue from the distance matrix, which is then added to the dataframe.
 
@@ -121,6 +116,7 @@ Rpoints <- function(d = 0.0025, n = 10, p){
 
 ``` r
 spat <- Rpoints(d = 0.001, n = 30, p = poly)
+head(spat@data)
 ```
 
     ##        dist         x        y

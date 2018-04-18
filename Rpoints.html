@@ -28,8 +28,6 @@ body {
 <h1 id="generate-random-sampling-points-by-minimum-distance">Generate Random Sampling Points by Minimum Distance</h1>
 <p>Anthony Caravaggi<br />
 2018-04-18</p>
-<h1 id="generate-random-sampling-points-by-minimum-distance-1">Generate Random Sampling Points by Minimum Distance</h1>
-<p>Anthony Caravaggi 18 April 2018</p>
 <p>Libraries</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggmap)
 <span class="kw">library</span>(spatstat)
@@ -107,7 +105,8 @@ Rpoints &lt;-<span class="st"> </span><span class="cf">function</span>(<span cla
                    <span class="dt">y =</span> y<span class="op">@</span>coords[,<span class="dv">2</span>])
   o &lt;-<span class="st"> </span><span class="kw">SpatialPointsDataFrame</span>(y,d)
 }</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">spat &lt;-<span class="st"> </span><span class="kw">Rpoints</span>(<span class="dt">d =</span> <span class="fl">0.001</span>, <span class="dt">n =</span> <span class="dv">30</span>, <span class="dt">p =</span> poly)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">spat &lt;-<span class="st"> </span><span class="kw">Rpoints</span>(<span class="dt">d =</span> <span class="fl">0.001</span>, <span class="dt">n =</span> <span class="dv">30</span>, <span class="dt">p =</span> poly)
+<span class="kw">head</span>(spat<span class="op">@</span>data)</code></pre></div>
 <pre><code>##        dist         x        y
 ## 1 1881.7276 -3.534130 51.69075
 ## 2  448.1446 -3.592968 51.72342
