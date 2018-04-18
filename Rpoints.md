@@ -73,7 +73,6 @@ Extract point coordinates and join to SpatialPoints object to create SpatialPoin
 ``` r
 df <- data.frame(x = samp1@coords[,1], y = samp1@coords[,2]) 
 samp1 <- SpatialPointsDataFrame(samp1, df)
-head(samp1@data)
 ```
 
 We might as well go ahead and map these to a Google Map image. Create a bounding box, download a Google Map image based on the centroid of the bounding box at a given resolution (zoom), and plot polygon and points.
@@ -104,7 +103,7 @@ These steps - minus the mapping - have been condensed into one function, Rpoints
 # E.g.
 # spat <- Rpoints(d = 0.05, n = 50, p = poly1)
 Rpoints <- function(d = 0.0025, n = 10, p){
-  s <- rSSI(d, n, poly) 
+  s <- rSSI(d, n, p) 
   y <- SpatialPoints(cbind(s$x, s$y), crs(p))
   t <- data.frame(spDists(y)*1000)
   d <- data.frame(dist = apply(t, 1, function (v) min(v[v > 0])), # Collapse distances to non-zero minimum
