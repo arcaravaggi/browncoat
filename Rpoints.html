@@ -79,7 +79,7 @@ samp1 &lt;-<span class="st"> </span><span class="kw">SpatialPoints</span>(samp1,
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> samp1<span class="op">@</span>coords[,<span class="dv">1</span>], <span class="dt">y =</span> samp1<span class="op">@</span>coords[,<span class="dv">2</span>]) 
 samp1 &lt;-<span class="st"> </span><span class="kw">SpatialPointsDataFrame</span>(samp1, df)
 <span class="kw">head</span>(samp1<span class="op">@</span>data)</code></pre></div>
-<p>We might as well go ahead and map these to a Google Map image.</p>
+<p>We might as well go ahead and map these to a Google Map image. Create a bounding box, download a Google Map image based on the centroid of the bounding box at a given resolution (zoom), and plot polygon and points.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bbx &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">left=</span><span class="op">-</span><span class="fl">3.664351</span>,<span class="dt">bottom=</span><span class="fl">51.631480</span>,<span class="dt">right=</span><span class="op">-</span><span class="fl">3.467390</span>,<span class="dt">top=</span><span class="fl">51.747602</span>)
 tre &lt;-<span class="st"> </span><span class="kw">get_googlemap</span>(<span class="dt">center =</span> <span class="kw">c</span>(<span class="dt">lon=</span><span class="kw">mean</span>(bbx[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]), <span class="dt">lat=</span><span class="kw">mean</span>(bbx[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)])),
                         <span class="dt">zoom =</span><span class="dv">12</span>, <span class="dt">maptype =</span> <span class="st">&quot;satellite&quot;</span>)
@@ -107,6 +107,14 @@ Rpoints &lt;-<span class="st"> </span><span class="cf">function</span>(<span cla
                    <span class="dt">y =</span> y<span class="op">@</span>coords[,<span class="dv">2</span>])
   o &lt;-<span class="st"> </span><span class="kw">SpatialPointsDataFrame</span>(y,d)
 }</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">spat &lt;-<span class="st"> </span><span class="kw">Rpoints</span>(<span class="dt">d =</span> <span class="fl">0.001</span>, <span class="dt">n =</span> <span class="dv">30</span>, <span class="dt">p =</span> poly)</code></pre></div>
+<pre><code>##        dist         x        y
+## 1 1881.7276 -3.534130 51.69075
+## 2  448.1446 -3.592968 51.72342
+## 3  801.0140 -3.613105 51.70234
+## 4  845.0331 -3.568266 51.72133
+## 5  713.5785 -3.506961 51.69509
+## 6  370.1300 -3.594272 51.73109</code></pre>
 
 </body>
 </html>

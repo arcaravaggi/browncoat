@@ -67,7 +67,7 @@ df <- data.frame(x = samp1@coords[,1], y = samp1@coords[,2])
 samp1 <- SpatialPointsDataFrame(samp1, df)
 head(samp1@data)
 ```
-We might as well go ahead and map these to a Google Map image.
+We might as well go ahead and map these to a Google Map image. Create a bounding box, download a Google Map image based on the centroid of the bounding box at a given resolution (zoom), and plot polygon and points.
 
 ```{r eval = FALSE}
 bbx <- c(left=-3.664351,bottom=51.631480,right=-3.467390,top=51.747602)
@@ -79,7 +79,7 @@ ggmap(tre) + geom_polygon(aes(x=x, y=y), data=poly, fill="red", alpha=.5) +
 ```
 
 ```{r echo = FALSE}
-bbx <- c(left=-3.664351,bottom=51.631480,right=-3.467390,top=51.747602)
+bbx <- c(left=-3.664351,bottom=51.631480,right=-3.467390,top=51.747602) 
 tre <- get_googlemap(center = c(lon=mean(bbx[c(1,3)]), lat=mean(bbx[c(2,4)])),
                         zoom =12, maptype = "satellite")
 sDat <- data.frame(samp1@coords)
@@ -109,4 +109,12 @@ Rpoints <- function(d = 0.0025, n = 10, p){
                    y = y@coords[,2])
   o <- SpatialPointsDataFrame(y,d)
 }
+```
+
+```r
+spat <- Rpoints(d = 0.001, n = 30, p = poly)
+```
+
+```{r echo = FALSE}
+head(spat@data)
 ```
