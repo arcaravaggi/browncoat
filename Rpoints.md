@@ -83,11 +83,20 @@ head(samp1@data)
 
 We might as well go ahead and map these to a Google Map image.
 
+``` r
+bbx <- c(left=-3.664351,bottom=51.631480,right=-3.467390,top=51.747602)
+tre <- get_googlemap(center = c(lon=mean(bbx[c(1,3)]), lat=mean(bbx[c(2,4)])),
+                        zoom =12, maptype = "satellite")
+sDat <- data.frame(samp1@coords)
+ggmap(tre) + geom_polygon(aes(x=x, y=y), data=poly, fill="red", alpha=.5) + 
+  geom_point(aes(x = sDat[,1], y = sDat[,2]), data = sDat, col="orange")
+```
+
     ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=51.689541,-3.56587&zoom=12&size=640x640&scale=2&maptype=satellite&sensor=false
 
-![](Rpoints_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
+![](Rpoints_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
 
-These steps have been condensed into one function, Rpoints, below. It includes an additional step - the extraction of the lowest non-zero vaue from the distance matrix, which is then added to the dataframe.
+These steps - minus the mapping - have been condensed into one function, Rpoints, below. It includes an additional step - the extraction of the lowest non-zero vaue from the distance matrix, which is then added to the dataframe.
 
 ``` r
 # Function to generate random points within a polygon buffered by a minimum distance
