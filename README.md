@@ -9,6 +9,9 @@ Demonstrating how to construct a KDE map, apply thresholds and convert to a rast
 [Multi-csv import and organisation](https://github.com/arcaravaggi/browncoat/blob/master/multicsv_2.md)  
 Import multiple csv files from a directory and extract relevant information. This simple demo was written to answer a question frequently asked by students.  
 
+[Generate Random Sampling Points by Minimum Distance](https://github.com/arcaravaggi/browncoat/blob/master/Rpoints.md)   
+The generation of random points separated by a minimum distance threshold. Includes polygon creation and displaying polygons and points on extracted Google maps.   
+
 [Web scraping](https://github.com/arcaravaggi/browncoat/blob/master/six_nations.md)  
 Scrape tables from a website, split columns and extract relevant data. This example uses data from the [Pick and Go](http://www.lassen.co.nz/pickandgo.php) website and rugby Six Nations data between 2000-2017.  
 
