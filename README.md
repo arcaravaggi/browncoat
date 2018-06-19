@@ -60,6 +60,9 @@ Function for pairwise correlations across a data frame
 [df_col_split.R](https://gist.github.com/arcaravaggi/05a1b15fa67a74ba9f0b0614f9a8281c)  
 Split column into multiple based on spaces, extra characters, etc.  
 
+[explodeR.R](https://gist.github.com/arcaravaggi/8e03ccd634de026a184bbb042f37fc71)   
+Copy row duplicating data *Xi* times. By StackOverflow user, [CPak.](https://stackoverflow.com/a/50930471/9962100)    
+
 [euDist.R](https://gist.github.com/arcaravaggi/b990ff3b9545a453761af5f2195b151c)    
 Calculate Euclidean distance between groups of ecological point data.
 
