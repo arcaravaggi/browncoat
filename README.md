@@ -72,11 +72,8 @@ Extract coordinates from SpatialPolygon object.
 [maxDup_NAs.R](https://gist.github.com/arcaravaggi/2acdf426c13af3aea7c5f25951585fbf)  
 Split data by focal column and remove duplicates from a span to columns, keeping the one with the most data.  Adapted from [akrun](https://stackoverflow.com/questions/33047084/r-remove-duplicated-value-conditionally-between-row-keeping-the-one-with-less-n).  
 
-[migrate_packages.R](https://gist.github.com/arcaravaggi/20acc42e3e245cc268a95269de024b2d)  
-Migrate R packages to new installation.  
-
 [modOverlap.R](https://gist.github.com/arcaravaggi/0b829257f41c3554cbbff8b1017ba6b1)  
-Metrics for quantifying the similarity among ecological niche models, from [modtools](https://modtools.wordpress.com/2015/10/30/modoverlap/)
+Metrics for quantifying the similarity among ecological niche models, from [modtools](https://modtools.wordpress.com/2015/10/30/modoverlap/).
 
 [multicsv_lst.R](https://gist.github.com/arcaravaggi/1abb4e19a20263b85cd7e488acd94ceb)  
 Read multiple csv files from one directory.  
@@ -101,3 +98,6 @@ Function for the truncation of a generated normal distribution (adapted *rnorm*)
 
 [tweetstorm.R](https://gist.github.com/arcaravaggi/bd4b99a5f006c999e9290fbd73637ec8)  
 Create a series of related tweets from one text string, from [emotiononthebrain](https://sites.tufts.edu/emotiononthebrain/2017/08/12/time-for-a-tweetstorm/).   
+
+[update_migrate.R](https://gist.github.com/arcaravaggi/20acc42e3e245cc268a95269de024b2d)  
+Update to the latest version of R and migrate/update packages to new installation, from within the console.    
