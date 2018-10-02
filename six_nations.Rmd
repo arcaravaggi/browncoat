@@ -1,6 +1,11 @@
-Scrape Six Nations match data
-================
-03 February 2018
+---
+title: "Scrape and clean Six Nations data"
+author: "Anthony Caravaggi"
+date: "`r format(Sys.Date())`"
+output: github_document
+---
+
+This was a simple exercise in scraping and cleaning a table from a website.
 
 Load required libraries
 ```{r}
@@ -8,7 +13,6 @@ library(XML)
 library(RCurl)
 library(rlist)
 library(stringr)
-}
 ```
 
 Import website. Here I'm extracting data from Pick and Go: http://www.lassen.co.nz/pickandgo.php
@@ -27,7 +31,13 @@ sn.00 <- tables[[which.max(n.rows)]]
 Check the head and tail for unwated data and remove if present
 ```{r}
 head(sn.00)
+```
+
+```{r}
 tail(sn.00)
+```
+
+```{r}
 sn.00 <- sn.00[-c(271:273),]
 ```
 
@@ -49,6 +59,7 @@ Recombine all into new dataframe and rename columns
 SixNations <- data.frame(y, sn.00$Rnd, m[,1], m[,2], s[,1], s[,2], t[,1],  t[,2], p[,1], p[,2], sn.00$Venue)
 names(SixNations) <- c("year", "round", "home", "away", "score_h", "score_a", "tries_h", "tries_a",
                        "points_h", "points_a", "venue")
+head(SixNations)
 ```
 
-The final dataframe can be found at: 
+The final dataframe can be found at: https://github.com/arcaravaggi/browncoat/blob/master/six_nations_data/six_nations_00-17.csv

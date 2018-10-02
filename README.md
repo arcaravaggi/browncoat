@@ -3,14 +3,14 @@ A personal repo containing functions, notes, that sort of thing. A miscellany, i
 
 ### Demonstrations   
 
+[Generate Random Sampling Points by Minimum Distance](https://github.com/arcaravaggi/browncoat/blob/master/Rpoints.md)   
+The generation of random points separated by a minimum distance threshold. Includes polygon creation and displaying polygons and points on extracted Google maps.   
+
 [Kernel Density Estimation (KDE)](https://github.com/arcaravaggi/browncoat/blob/master/KDE.md)  
 Demonstrating how to construct a KDE map, apply thresholds and convert to a raster object.
 
 [Multi-csv import and organisation](https://github.com/arcaravaggi/browncoat/blob/master/multicsv_2.md)  
 Import multiple csv files from a directory and extract relevant information. This simple demo was written to answer a question frequently asked by students.  
-
-[Generate Random Sampling Points by Minimum Distance](https://github.com/arcaravaggi/browncoat/blob/master/Rpoints.md)   
-The generation of random points separated by a minimum distance threshold. Includes polygon creation and displaying polygons and points on extracted Google maps.   
 
 [Web scraping](https://github.com/arcaravaggi/browncoat/blob/master/six_nations.md)  
 Scrape tables from a website, split columns and extract relevant data. This example uses data from the [Pick and Go](http://www.lassen.co.nz/pickandgo.php) website and rugby Six Nations data between 2000-2017.  
@@ -68,6 +68,9 @@ Calculate Euclidean distance between groups of ecological point data.
 
 [extractCoords.R](https://gist.github.com/arcaravaggi/cc7a0995279d2a05780b733bed74554c)   
 Extract coordinates from SpatialPolygon object.    
+
+[facetR2.R](https://gist.github.com/arcaravaggi/b2c9bf65d4df24b5f030c8062695bbd8)    
+Label ggplot facet plots with facet group name and R^2. From [Stack Overflow](https://stackoverflow.com/questions/17022553/adding-r2-on-graph-with-facets).    
 
 [maxDup_NAs.R](https://gist.github.com/arcaravaggi/2acdf426c13af3aea7c5f25951585fbf)  
 Split data by focal column and remove duplicates from a span to columns, keeping the one with the most data.  Adapted from [akrun](https://stackoverflow.com/questions/33047084/r-remove-duplicated-value-conditionally-between-row-keeping-the-one-with-less-n).  

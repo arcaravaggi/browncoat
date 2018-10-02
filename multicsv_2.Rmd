@@ -1,0 +1,46 @@
+---
+title: "Read multiple csv files and subset"
+author: "Anthony Caravaggi"
+date: "9 January 2018"
+output: github_document
+---
+To use this script as-is, download the scripts from the multicsv_2_files directory. The script assumes that the csv files are located in the working directory. If this is not the case, edit the code accordingly (e.g. dir(path = '....', pattern...)).
+
+First, read the csv names.
+
+```{r}
+csv_files <- dir(pattern='*.csv$', recursive = T)
+csv_files
+```
+
+Then, create an empty list to store the dataframs and use a for loop to read the csv files into the list. Some people will no doubt shake their heads at the use of a for loop, but it does the job nicely. The `skip` command in read.csv tells the function to drop all rows up to a given point. Our data have a lot of noise in the first dozen or so rows, so we'll omit them. 
+
+```{r}
+my.data <- list()
+
+for (i in 1:length(csv_files)){
+  my.data[[i]] <- read.csv(csv_files[[i]], header = T, as.is = T)
+}
+
+head(my.data[[1]])
+```
+
+Before we extract specific columns to a new list, we want to make sure that all columns have the same names. That's easy to do, particularly as I'm using files with the same number and type of columns. That was lucky. 
+
+```{r}
+c.n <- c("x", "y", "location", "species", "count", "day", "month", "time", "time.period", "year")
+my.data <- lapply(my.data, setNames, c.n)
+
+head(my.data)
+```
+
+Now we'll extract our chosen columns to a new list, cast it as a dataframe and subset according to a given value. Here we're looking for all records which contain the location 'Moyarget wood'.
+
+```{r}
+sub.dat <- lapply(my.data, "[", c("location", "species", "month", "time", "x", "y"))
+head(sub.dat)
+dat <- do.call(rbind.data.frame, sub.dat)
+head(dat)
+new.dat <- subset(dat, location == "Ballykelly")
+head(new.dat)
+```

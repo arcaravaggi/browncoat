@@ -1,16 +1,19 @@
 Generate Random Sampling Points by Minimum Distance
 ================
 Anthony Caravaggi
-2018-04-18
+2018-10-02
 
 Libraries
 
 ``` r
+devtools::install_github("dkahle/ggmap") # v2.7 required
 library(ggmap)
 library(spatstat)
 library(rgdal)
 library(rgeos)
 library(raster)
+library(maptools)
+library(assertthat)
 ```
 
 This demonstration will go through the generation of random points separated by a minimum distance threshold, step-by-step. A function, Rpoints, condensing the process can be found at the bottom of the page.
@@ -27,7 +30,7 @@ p1 <- Polygon(xy)
 poly <- SpatialPolygons(list(Polygons(list(p1), ID = "a")), proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
 ```
 
-![](Rpoints_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-1.png)
+![](Rpoints_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
 Generate random points with a minimum distance between each point. The rSSI function uses an inhibition distance based on a Simple Sequential Inhibition point process. I used it here for simplicity; other limited point-generation methods could be used instead.
 
@@ -37,7 +40,7 @@ samp1 <- cbind(samp1$x, samp1$y) # Extract coordinates
 samp1 <- SpatialPoints(samp1, crs(poly)) # Transform to SpatialPoints shapefile
 ```
 
-![](Rpoints_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-1.png)
+![](Rpoints_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 Check that the minumim threshold has not been violated.
 
@@ -45,28 +48,51 @@ Check that the minumim threshold has not been violated.
 spDists(samp1)*1000
 ```
 
-    ##           [,1]     [,2]     [,3]     [,4]     [,5]     [,6]      [,7]
-    ##  [1,]    0.000 4908.893 4589.448 4746.113 3291.052 2157.120 4196.2545
-    ##  [2,] 4908.893    0.000 1032.279 1037.670 2474.616 4430.114 3401.5118
-    ##  [3,] 4589.448 1032.279    0.000 1951.644 2890.511 4587.302 4062.2590
-    ##  [4,] 4746.113 1037.670 1951.644    0.000 1773.963 3828.135 2433.2525
-    ##  [5,] 3291.052 2474.616 2890.511 1773.963    0.000 2055.654 1376.9240
-    ##  [6,] 2157.120 4430.114 4587.302 3828.135 2055.654    0.000 2327.3456
-    ##  [7,] 4196.255 3401.512 4062.259 2433.253 1376.924 2327.346    0.0000
-    ##  [8,] 4497.553 5296.673 5856.525 4358.709 2977.634 2350.010 1932.9633
-    ##  [9,] 3696.527 2303.152 1381.607 2971.641 3166.756 4314.069 4521.2486
-    ## [10,] 5009.460 4146.131 4905.168 3123.179 2335.731 2979.806  961.6563
-    ##           [,8]     [,9]     [,10]
-    ##  [1,] 4497.553 3696.527 5009.4600
-    ##  [2,] 5296.673 2303.152 4146.1307
-    ##  [3,] 5856.525 1381.607 4905.1684
-    ##  [4,] 4358.709 2971.641 3123.1789
-    ##  [5,] 2977.634 3166.756 2335.7309
-    ##  [6,] 2350.010 4314.069 2979.8059
-    ##  [7,] 1932.963 4521.249  961.6563
-    ##  [8,]    0.000 6063.341 1646.0830
-    ##  [9,] 6063.341    0.000 5457.9449
-    ## [10,] 1646.083 5457.945    0.0000
+    ##           [,1]      [,2]     [,3]     [,4]     [,5]     [,6]     [,7]
+    ##  [1,]    0.000 1312.8340 4124.157 5157.040 1476.543 3592.447 2496.064
+    ##  [2,] 1312.834    0.0000 5270.029 4845.761 1723.273 3223.120 1603.709
+    ##  [3,] 4124.157 5270.0294    0.000 5867.207 5305.118 5144.840 6619.755
+    ##  [4,] 5157.040 4845.7607 5867.207    0.000 6424.159 1623.806 6244.567
+    ##  [5,] 1476.543 1723.2732 5305.118 6424.159    0.000 4809.765 1694.048
+    ##  [6,] 3592.447 3223.1199 5144.840 1623.806 4809.765    0.000 4653.627
+    ##  [7,] 2496.064 1603.7089 6619.755 6244.567 1694.048 4653.627    0.000
+    ##  [8,] 2219.170  933.2195 5981.346 4542.367 2523.160 2978.460 1719.491
+    ##  [9,] 5588.647 5666.2026 5014.428 1699.016 7012.371 2699.163 7213.111
+    ## [10,] 1443.997 1216.7257 4475.104 3799.209 2626.947 2193.695 2815.484
+    ##            [,8]     [,9]    [,10]
+    ##  [1,] 2219.1695 5588.647 1443.997
+    ##  [2,]  933.2195 5666.203 1216.726
+    ##  [3,] 5981.3464 5014.428 4475.104
+    ##  [4,] 4542.3670 1699.016 3799.209
+    ##  [5,] 2523.1597 7012.371 2626.947
+    ##  [6,] 2978.4596 2699.163 2193.695
+    ##  [7,] 1719.4912 7213.111 2815.484
+    ##  [8,]    0.0000 5613.604 1565.260
+    ##  [9,] 5613.6039    0.000 4475.101
+    ## [10,] 1565.2600 4475.101    0.000
+
+    ##           [,1]      [,2]     [,3]     [,4]     [,5]     [,6]     [,7]
+    ##  [1,]    0.000 1312.8340 4124.157 5157.040 1476.543 3592.447 2496.064
+    ##  [2,] 1312.834    0.0000 5270.029 4845.761 1723.273 3223.120 1603.709
+    ##  [3,] 4124.157 5270.0294    0.000 5867.207 5305.118 5144.840 6619.755
+    ##  [4,] 5157.040 4845.7607 5867.207    0.000 6424.159 1623.806 6244.567
+    ##  [5,] 1476.543 1723.2732 5305.118 6424.159    0.000 4809.765 1694.048
+    ##  [6,] 3592.447 3223.1199 5144.840 1623.806 4809.765    0.000 4653.627
+    ##  [7,] 2496.064 1603.7089 6619.755 6244.567 1694.048 4653.627    0.000
+    ##  [8,] 2219.170  933.2195 5981.346 4542.367 2523.160 2978.460 1719.491
+    ##  [9,] 5588.647 5666.2026 5014.428 1699.016 7012.371 2699.163 7213.111
+    ## [10,] 1443.997 1216.7257 4475.104 3799.209 2626.947 2193.695 2815.484
+    ##            [,8]     [,9]    [,10]
+    ##  [1,] 2219.1695 5588.647 1443.997
+    ##  [2,]  933.2195 5666.203 1216.726
+    ##  [3,] 5981.3464 5014.428 4475.104
+    ##  [4,] 4542.3670 1699.016 3799.209
+    ##  [5,] 2523.1597 7012.371 2626.947
+    ##  [6,] 2978.4596 2699.163 2193.695
+    ##  [7,] 1719.4912 7213.111 2815.484
+    ##  [8,]    0.0000 5613.604 1565.260
+    ##  [9,] 5613.6039    0.000 4475.101
+    ## [10,] 1565.2600 4475.101    0.000
 
 Extract point coordinates and join to SpatialPoints object to create SpatialPointsDataFrame
 
@@ -75,20 +101,35 @@ df <- data.frame(x = samp1@coords[,1], y = samp1@coords[,2])
 samp1 <- SpatialPointsDataFrame(samp1, df)
 ```
 
-We might as well go ahead and map these to a Google Map image. Create a bounding box, download a Google Map image based on the centroid of the bounding box at a given resolution (zoom), and plot polygon and points.
+We might as well go ahead and map these to a Stamen Map image. This demonstration previously mapped on top of a Google Maps image but Google stopped providing free API access in July 2018. If you want to use this method wit Google Maps then you'll require an API key and to use the `get_googlemap` function. Create a bounding box, download map tiles image based the bounding box at a given resolution (zoom), and plot polygon and points.
 
 ``` r
 bbx <- c(left=-3.664351,bottom=51.631480,right=-3.467390,top=51.747602)
-tre <- get_googlemap(center = c(lon=mean(bbx[c(1,3)]), lat=mean(bbx[c(2,4)])),
-                        zoom =12, maptype = "satellite")
+tre <- get_stamenmap(bbx, zoom =12, maptype = "watercolor")
 sDat <- data.frame(samp1@coords)
 ggmap(tre) + geom_polygon(aes(x=x, y=y), data=poly, fill="red", alpha=.5) + 
   geom_point(aes(x = sDat[,1], y = sDat[,2]), data = sDat, col="orange")
 ```
 
-    ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=51.689541,-3.56587&zoom=12&size=640x640&scale=2&maptype=satellite&sensor=false
+    ## Source : http://tile.stamen.com/terrain/12/2006/1357.png
 
-![](Rpoints_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
+    ## Source : http://tile.stamen.com/terrain/12/2007/1357.png
+
+    ## Source : http://tile.stamen.com/terrain/12/2008/1357.png
+
+    ## Source : http://tile.stamen.com/terrain/12/2006/1358.png
+
+    ## Source : http://tile.stamen.com/terrain/12/2007/1358.png
+
+    ## Source : http://tile.stamen.com/terrain/12/2008/1358.png
+
+    ## Source : http://tile.stamen.com/terrain/12/2006/1359.png
+
+    ## Source : http://tile.stamen.com/terrain/12/2007/1359.png
+
+    ## Source : http://tile.stamen.com/terrain/12/2008/1359.png
+
+![](Rpoints_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 These steps - minus the mapping - have been condensed into one function, Rpoints, below. It includes an additional step - the extraction of the lowest non-zero vaue from the distance matrix, which is then added to the dataframe.
 
@@ -111,17 +152,14 @@ Rpoints <- function(d = 0.0025, n = 10, p){
                    y = y@coords[,2])
   o <- SpatialPointsDataFrame(y,d)
 }
-```
-
-``` r
 spat <- Rpoints(d = 0.001, n = 30, p = poly)
 head(spat@data)
 ```
 
-    ##        dist         x        y
-    ## 1 1881.7276 -3.534130 51.69075
-    ## 2  448.1446 -3.592968 51.72342
-    ## 3  801.0140 -3.613105 51.70234
-    ## 4  845.0331 -3.568266 51.72133
-    ## 5  713.5785 -3.506961 51.69509
-    ## 6  370.1300 -3.594272 51.73109
+    ##       dist         x        y
+    ## 1 511.2992 -3.570760 51.70442
+    ## 2 503.2030 -3.568312 51.71536
+    ## 3 613.0949 -3.525095 51.68807
+    ## 4 988.0534 -3.574132 51.66083
+    ## 5 979.3824 -3.548274 51.72158
+    ## 6 613.0949 -3.525672 51.69357
