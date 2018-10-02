@@ -37,12 +37,12 @@ head(detections)
 ```
 
     ##   count         x        y
-    ## 1     1 -26538520 17505737
-    ## 2     6 -26510166 17372844
-    ## 3     1 -26526684 17425644
-    ## 4     8 -26611374 17358826
-    ## 5     7 -26636938 17430074
-    ## 6     6 -26609089 17340143
+    ## 1     2 -26521604 17317099
+    ## 2     5 -26689755 17493429
+    ## 3     6 -26619405 17337213
+    ## 4     1 -26582433 17456836
+    ## 5     3 -26547243 17368757
+    ## 6     3 -26548105 17330645
 
 Duplicate rows according to count values, preserving coordinate columns.
 
@@ -52,14 +52,14 @@ head(det.all)
 ```
 
     ##             x        y
-    ## 1   -26538520 17505737
-    ## 2   -26510166 17372844
-    ## 2.1 -26510166 17372844
-    ## 2.2 -26510166 17372844
-    ## 2.3 -26510166 17372844
-    ## 2.4 -26510166 17372844
+    ## 1   -26521604 17317099
+    ## 1.1 -26521604 17317099
+    ## 2   -26689755 17493429
+    ## 2.1 -26689755 17493429
+    ## 2.2 -26689755 17493429
+    ## 2.3 -26689755 17493429
 
-Create a point pattern dataset and apply the kernel density function.
+Create a point pattern dataset and apply the kernel density function. We'll get a duplication warning, but we're expecting that based on the previous step.
 
 ``` r
 cam.ppd <- ppp(det.all$x, det.all$y, window = owin(c(-26705348, -26505349), c(17309637, 17509636)))
@@ -97,7 +97,7 @@ rasterRescale<-function(r){
 sp.dens_r2 <- rasterRescale(sp.dens_r)
 ```
 
-Apply threshold by formatting values below a given value to be 0.
+Apply threshold by setting values below a given value to 0.
 
 ``` r
 sp.dens_r2[sp.dens_r2<=0.25]=0
