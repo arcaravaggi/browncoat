@@ -38,6 +38,9 @@ Simplified loading and installing of packages, from [rbloggers](https://www.r-bl
 [rem_resample.R](https://github.com/arcaravaggi/browncoat/blob/master/rem_resample.R)  
 Resample camera trap zone of detection metrics (r & theta) and calculate 95% confidence intervals.  
 
+[secretsanta.R](https://github.com/arcaravaggi/browncoat/blob/master/secretsanta.R)    
+Run a Secret Santa exchange from within R. Includes mail merge and send.   
+
 [suntimes.R](https://github.com/arcaravaggi/browncoat/blob/master/suntimes.R)  
 Calculate sunrise and sunset for a given location at a given time of year.   
 
