@@ -6,9 +6,12 @@ Anthony Caravaggi
 Libraries
 
 ``` r
+library(maps)
+library(mapdata)
+library(maptools)
+library(raster)
 library(sp)
 library(spatstat)
-library(raster)
 ```
 
 Create SpatialPolygon object of ~ 200 km^2.
@@ -37,12 +40,12 @@ head(detections)
 ```
 
     ##   count         x        y
-    ## 1     2 -26521604 17317099
-    ## 2     5 -26689755 17493429
-    ## 3     6 -26619405 17337213
-    ## 4     1 -26582433 17456836
-    ## 5     3 -26547243 17368757
-    ## 6     3 -26548105 17330645
+    ## 1     8 -26628103 17352299
+    ## 2     0 -26513505 17409815
+    ## 3     3 -26554372 17467457
+    ## 4     1 -26535916 17371097
+    ## 5     3 -26548571 17352406
+    ## 6     5 -26538241 17464423
 
 Duplicate rows according to count values, preserving coordinate columns.
 
@@ -52,12 +55,12 @@ head(det.all)
 ```
 
     ##             x        y
-    ## 1   -26521604 17317099
-    ## 1.1 -26521604 17317099
-    ## 2   -26689755 17493429
-    ## 2.1 -26689755 17493429
-    ## 2.2 -26689755 17493429
-    ## 2.3 -26689755 17493429
+    ## 1   -26628103 17352299
+    ## 1.1 -26628103 17352299
+    ## 1.2 -26628103 17352299
+    ## 1.3 -26628103 17352299
+    ## 1.4 -26628103 17352299
+    ## 1.5 -26628103 17352299
 
 Create a point pattern dataset and apply the kernel density function. We'll get a duplication warning, but we're expecting that based on the previous step.
 
@@ -119,3 +122,91 @@ plot(sp.dens_r3)
 ```
 
 ![](KDE_files/figure-markdown_github/unnamed-chunk-9-1.png)
+
+### KDEs within `map` objects
+
+Objects from the `maps` package need to be converted to a SpatialPolygon prior to being coerced to a `owin` object as required by the `ppp` function. First, we're going to extract a map object. I'm choosing Malawi, because why not.
+
+``` r
+cmot <- map(database = 'world',
+    regions = "malawi",
+    fill = T,
+    col = 'grey',
+    resolution = 0,
+    bg = 'white'
+)
+```
+
+![](KDE_files/figure-markdown_github/unnamed-chunk-10-1.png)
+
+We then have to convert the map object to a SpatialPolygon. To do this, we extract the country name and use it as an identifer in the converstion, thus producing a continuous polygon.
+
+``` r
+IDs <- sapply(strsplit(cmot$names, ":"), function(x) x[1])
+dib <- map2SpatialPolygons(cmot, IDs=IDs, proj4string=CRS("+proj=longlat +datum=WGS84"))
+```
+
+Then we generate our samples, as before.
+
+``` r
+pts <- spsample(dib,n=250,type="random")
+plot(dib)
+plot(pts, add = TRUE)
+```
+
+![](KDE_files/figure-markdown_github/unnamed-chunk-12-1.png)
+
+We create a dataframe containing the x and y coordinates of each point, as well as the number of individuals at each. My simulated data represent one individual per observation. If you have more than one observation per record, duplicate rows, as above.
+
+``` r
+detections <- data.frame(count = 1, pts@coords)
+```
+
+The `ppp` function requires an `owin` object to serve as the boundary for the KDE. You cannot pass a `map` object or converted map object to owin, directly, it has to be converted.
+
+``` r
+mass.owin <- as.owin.SpatialPolygons(dib)
+```
+
+Then we create the Point Pattern Process file and run the density function.
+
+``` r
+cam.ppd <- ppp(detections$x, detections$y, window = owin(mass.owin))
+bler <- density(cam.ppd)
+plot(bler)
+```
+
+![](KDE_files/figure-markdown_github/unnamed-chunk-15-1.png)
+
+We can use the rescale functions defined above to create specific bands across the KDE. First, convert the density plot to a raster and apply thresholds for contextual visualisation.
+
+``` r
+bler_r <- raster(bler)
+```
+
+Rescale cell values between 0 and 1.
+
+``` r
+rasterRescale<-function(r){
+  ((r-cellStats(r,"min"))/(cellStats(r,"max")-cellStats(r,"min")))
+}
+
+bler_r2 <- rasterRescale(bler_r)
+```
+
+Apply threshold by setting values below a given value to 0. We want three different bands, 95%, 50% and 10%. For this, we need to set values below the given thresholds to 0
+
+``` r
+kde_95 <- bler_r2
+kde_50 <- bler_r2
+kde_10 <- bler_r2
+
+kde_95[kde_95<0.95]=NA
+kde_50[kde_50<0.50]=NA
+kde_10[kde_10<0.10]=NA
+plot(kde_10, col="yellow", legend=F)
+plot(kde_50, col="orange", legend=F, add=T)
+plot(kde_95, col="red", legend=F, add=T)
+```
+
+![](KDE_files/figure-markdown_github/unnamed-chunk-18-1.png)
