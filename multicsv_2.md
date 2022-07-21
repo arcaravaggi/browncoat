@@ -166,7 +166,7 @@ head(my.data)
     ## 21 08:37 08:00-08:59 2015
     ## 22 00:58 00:00-00:59 2015
 
-Now we'll extract our chosen columns to a new list, cast it as a dataframe and subset according to a given value. Here we're looking for all records which contain the location 'Moyarget wood'.
+Now we'll extract our chosen columns to a new list, cast it as a dataframe and subset according to a given value. 
 
 ``` r
 sub.dat <- lapply(my.data, "[", c("location", "species", "month", "time", "x", "y"))
