@@ -54,8 +54,17 @@ For all Gists, [click here](https://gist.github.com/arcaravaggi)
 [arrange_cols.R](https://gist.github.com/arcaravaggi/38d9739380a08464e990427ba5222356)  
 (Re-)arrange columns of a dataframe.
 
+[autonoRm.R](https://gist.github.com/arcaravaggi/72b63b6552941f33f7b3955e0600e2fd)  
+Generate a set of autocorrelated random normal variates.  
+
+[binRC.R](https://gist.github.com/arcaravaggi/3d1aa1932f138d0ea679c103551a81a8)  
+Reduce multiple columns to single binary vector.   
+
 [coefplot.R](https://gist.github.com/arcaravaggi/298d257e53473b1e3beaaba449ec50ec)  
-Plot regression coefficients, from [r-statistics](https://www.r-statistics.com/wp-content/uploads/2010/07/coefplot.r.txt"), by [Achim Zeileis](http://statmath.wu.ac.at/~zeileis/).
+Plot regression coefficients, from [r-statistics](https://www.r-statistics.com/wp-content/uploads/2010/07/coefplot.r.txt"), by [Achim Zeileis](http://statmath.wu.ac.at/~zeileis/).  
+
+[confNet.R](https://gist.github.com/arcaravaggi/7026b017a3909df2da3b09d67cdb8e59)  
+Function to create network data objects.   
 
 [cor.test.R](https://gist.github.com/arcaravaggi/004979408be4116505a49bd1d4c6e298)
 Function for pairwise correlations across a data frame
@@ -74,6 +83,9 @@ Extract coordinates from SpatialPolygon object.
 
 [facetR2.R](https://gist.github.com/arcaravaggi/b2c9bf65d4df24b5f030c8062695bbd8)    
 Label ggplot facet plots with facet group name and R^2. From [Stack Overflow](https://stackoverflow.com/questions/17022553/adding-r2-on-graph-with-facets).    
+
+[ipak.R](https://gist.github.com/arcaravaggi/029354c3e46d94b999419a3c72215005)   
+Function to load a list of packages and install package if absent.   
 
 [maxDup_NAs.R](https://gist.github.com/arcaravaggi/2acdf426c13af3aea7c5f25951585fbf)  
 Split data by focal column and remove duplicates from a span to columns, keeping the one with the most data.  Adapted from [akrun](https://stackoverflow.com/questions/33047084/r-remove-duplicated-value-conditionally-between-row-keeping-the-one-with-less-n).  
@@ -106,4 +118,7 @@ Function for the truncation of a generated normal distribution (adapted *rnorm*)
 Create a series of related tweets from one text string, from [emotiononthebrain](https://sites.tufts.edu/emotiononthebrain/2017/08/12/time-for-a-tweetstorm/).   
 
 [update_migrate.R](https://gist.github.com/arcaravaggi/20acc42e3e245cc268a95269de024b2d)  
-Update to the latest version of R and migrate/update packages to new installation, from within the console.    
+Update to the latest version of R and migrate/update packages to new installation, from within the console.   
+
+[veQ.R](https://gist.github.com/arcaravaggi/299cb55475455a6036324b6562f79ea7)  
+Generate dispersion (including plot) and summary metrics for a given vector.   
